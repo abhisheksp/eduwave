@@ -1,0 +1,656 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/HannahG/pen/RMGqXR" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+<style class="cp-pen-styles">html, body {
+  height: 100%;
+  background: black;
+}
+
+.slide__audio {
+  position: relative;
+  background: black;
+  width: 100px;
+  top: 20%;
+  margin: 0 auto;
+}
+
+.audio__controls {
+  height: 100px;
+  width: 100px;
+  position: relative;
+}
+
+.slide__audio .slide__audio-player {
+  display: none;
+}
+
+.audio__slider {
+  position: absolute;
+  z-index: 3;
+}
+
+.audio__slider::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.audio__slider .rs-container {
+  position: relative;
+}
+
+.audio__slider .rs-bar {
+  top: 50%;
+}
+
+.audio__slider .rs-tooltip {
+  display: none;
+}
+
+.rs-control {
+  position: relative;
+  outline: 0 none;
+}
+
+.rs-container {
+  position: relative;
+}
+
+.rs-control *, .rs-control *:before, .rs-control *:after {
+  box-sizing: border-box;
+}
+
+.rs-animation .rs-transition {
+  transition: all 0.5s linear 0s;
+}
+
+.rs-bar {
+  -webkit-transform-origin: 100% 50%;
+          transform-origin: 100% 50%;
+}
+
+.rs-control .rs-split .rs-path, .rs-control .rs-overlay1, .rs-control .rs-overlay2 {
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+}
+
+.rs-control .rs-overlay {
+  -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+}
+
+.rs-control.rs-error {
+  border: 1px dotted;
+  text-align: center;
+}
+
+.rs-inner-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.rs-block {
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.rs-block .rs-inner {
+  border-radius: 1000px;
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.rs-bar {
+  position: absolute;
+  height: 0;
+  z-index: 10;
+}
+
+.rs-bar .rs-seperator {
+  height: 0;
+  border-bottom: medium none;
+  display: block;
+  float: left;
+}
+
+.full .rs-bar, .half .rs-bar {
+  width: 50%;
+}
+
+.full .rs-bar, .half.left .rs-bar, .half.right .rs-bar {
+  top: 50%;
+}
+
+.bottom .rs-bar {
+  top: 0;
+}
+
+.half.right .rs-bar, .quarter.right .rs-bar {
+  right: 100%;
+}
+
+.rs-handle.rs-move {
+  cursor: move;
+}
+
+.rs-readonly .rs-handle.rs-move {
+  cursor: default;
+}
+
+.rs-path {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.rs-split .rs-path {
+  border-radius: 1000px 1000px 0 0;
+  overflow: hidden;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.rs-tooltip {
+  text-align: center;
+  position: absolute;
+  cursor: default;
+  border: 1px solid transparent;
+  z-index: 10;
+}
+
+.rs-handle {
+  border-radius: 1000px;
+  outline: 0 none;
+  float: left;
+}
+
+.rs-handle.rs-handle-square {
+  border-radius: 0;
+}
+
+.paused .rs-handle,
+.playing .rs-handle,
+.active .rs-handle {
+  background-color: #0c2;
+}
+
+.rs-handle {
+  background-color: #838383;
+}
+
+.slide__audio #circle {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  bottom: 0;
+  stroke: #0c2;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.play-pause {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  z-index: 3;
+  width: 50px;
+  background: transparent !important;
+  height: 50px;
+  cursor: pointer;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.play-pause:focus {
+  outline: none;
+}
+
+.play-pause::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAZdJREFUeNrs29FNQjEYBlAgDuAIuAFugBvgBrABTiBOgE4AGzgCbCAbwAayAbZJb0KMT77wt/ecpO/39qP9CqGDAQAAAAAAAAAAAAAA8A+Xy2WWxr2ZiBPILo1jGlOzESeQzmcaY7MSJ5DsO42lmYkTSOcrjYkZihNIZ630YwVyKaU/M1txAunsWir9UQPvkI/GuVtWPsoxVsjv0p9aIXHkE9iu5tIfNbrI8neWXPpzgcSRV8imttJvOZDr0j/WUvp9CKTzWsMPln0KJBuX0t9ELf2+BdKZl21sKZBYpb8upT8RSMBv+hG2MYFclX4JZioQBPKHtzQeh8Ph/pYPcSeHQQ7gJQVxsEJu61yCeIoSRp9XyLaEcY72YH0L5JTG4tY9YcsqpZ2CeIgcRl9WyL6sipNj7+1Le1FK+1TLQ7cayHsaeXva1vbgrW1Zh3J62tf6Aq0EkrenjxTEqvYXaSGQqkq75Q7JATzXVtpV8mfregJxHSFIIC7sBArElbYggbj0GSgQ16IBAAAAAAAAAAAAACCsHwEGACfr+SLf7BaJAAAAAElFTkSuQmCC");
+  background-size: 150%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+#seekbar {
+  stroke-width: 6;
+}
+
+.playing #seekbar {
+  visibility: visible;
+}
+
+.playing .play-pause::after {
+  content: none;
+}
+
+.playing .play-pause::before {
+  opacity: 1;
+}
+
+.equalizer {
+  height: 100px;
+  width: 50px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  left: 25px;
+  top: 10px;
+  position: absolute;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  opacity: 0;
+}
+
+.playing .equalizer {
+  opacity: 1;
+}
+
+.equalizer-group {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.bar {
+  fill: #0c2;
+  width: 5px;
+  -webkit-animation: equalize 1.25s steps(25, end) 0s infinite;
+          animation: equalize 1.25s steps(25, end) 0s infinite;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  position: relative;
+  margin-top: -50px;
+}
+
+.bar:nth-child(1) {
+  -webkit-animation-duration: 1.9s;
+          animation-duration: 1.9s;
+  -webkit-transform: translate(5px, 50%);
+          transform: translate(5px, 50%);
+}
+
+.bar:nth-child(2) {
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-transform: translate(25%, 50%);
+          transform: translate(25%, 50%);
+}
+
+.bar:nth-child(3) {
+  -webkit-animation-duration: 2.3s;
+          animation-duration: 2.3s;
+  -webkit-transform: translate(50%, 50%);
+          transform: translate(50%, 50%);
+}
+
+.bar:nth-child(4) {
+  -webkit-animation-duration: 2.4s;
+          animation-duration: 2.4s;
+  -webkit-transform: translate(75%, 50%);
+          transform: translate(75%, 50%);
+}
+
+.bar:nth-child(5) {
+  -webkit-animation-duration: 2.1s;
+          animation-duration: 2.1s;
+  -webkit-transform: translate(95%, 50%);
+          transform: translate(95%, 50%);
+}
+
+@-webkit-keyframes equalize {
+  0% {
+    height: 10px;
+    margin-top: -10px;
+  }
+  4% {
+    height: 5px;
+    margin-top: -5px;
+  }
+  8% {
+    height: 40px;
+    margin-top: -40px;
+  }
+  12% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  16% {
+    height: 20px;
+    margin-top: -20px;
+  }
+  20% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  24% {
+    height: 40px;
+    margin-top: -40px;
+  }
+  28% {
+    height: 10px;
+    margin-top: -10px;
+  }
+  32% {
+    height: 40px;
+    margin-top: -40px;
+  }
+  36% {
+    height: 10px;
+    margin-top: -10px;
+  }
+  40% {
+    height: 20px;
+    margin-top: -20px;
+  }
+  44% {
+    height: 40px;
+    margin-top: -40px;
+  }
+  48% {
+    height: 15px;
+    margin-top: -15px;
+  }
+  52% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  56% {
+    height: 10px;
+    margin-top: -10px;
+  }
+  60% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  64% {
+    height: 35px;
+    margin-top: -35px;
+  }
+  68% {
+    height: 15px;
+    margin-top: -15px;
+  }
+  72% {
+    height: 5px;
+    margin-top: -5px;
+  }
+  76% {
+    height: 45px;
+    margin-top: -45px;
+  }
+  80% {
+    height: 25px;
+    margin-top: -25px;
+  }
+  84% {
+    height: 5px;
+    margin-top: -5px;
+  }
+  88% {
+    height: 50px;
+    margin-top: -50px;
+  }
+  92% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  96% {
+    height: 50px;
+    margin-top: -50px;
+  }
+  100% {
+    height: 25px;
+    margin-top: -25px;
+  }
+}
+
+@keyframes equalize {
+  0% {
+    height: 10px;
+    margin-top: -10px;
+  }
+  4% {
+    height: 5px;
+    margin-top: -5px;
+  }
+  8% {
+    height: 40px;
+    margin-top: -40px;
+  }
+  12% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  16% {
+    height: 20px;
+    margin-top: -20px;
+  }
+  20% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  24% {
+    height: 40px;
+    margin-top: -40px;
+  }
+  28% {
+    height: 10px;
+    margin-top: -10px;
+  }
+  32% {
+    height: 40px;
+    margin-top: -40px;
+  }
+  36% {
+    height: 10px;
+    margin-top: -10px;
+  }
+  40% {
+    height: 20px;
+    margin-top: -20px;
+  }
+  44% {
+    height: 40px;
+    margin-top: -40px;
+  }
+  48% {
+    height: 15px;
+    margin-top: -15px;
+  }
+  52% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  56% {
+    height: 10px;
+    margin-top: -10px;
+  }
+  60% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  64% {
+    height: 35px;
+    margin-top: -35px;
+  }
+  68% {
+    height: 15px;
+    margin-top: -15px;
+  }
+  72% {
+    height: 5px;
+    margin-top: -5px;
+  }
+  76% {
+    height: 45px;
+    margin-top: -45px;
+  }
+  80% {
+    height: 25px;
+    margin-top: -25px;
+  }
+  84% {
+    height: 5px;
+    margin-top: -5px;
+  }
+  88% {
+    height: 50px;
+    margin-top: -50px;
+  }
+  92% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  96% {
+    height: 50px;
+    margin-top: -50px;
+  }
+  100% {
+    height: 25px;
+    margin-top: -25px;
+  }
+}
+</style></head><body>
+  <div class="slide__audio js-audio">
+                        <audio class="slide__audio-player" controls="">
+                          <source src="https://www.soundjay.com/nature/sounds/rain-01.mp3" type="audio/mpeg"/>
+                        </audio>
+                        <div class="audio__controls">
+                          <svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100"><path id="seekbar" fill="none" stroke-miterlimit="10" d="M50,2.9L50,2.9C76,2.9,97.1,24,97.1,50v0C97.1,76,76,97.1,50,97.1h0C24,97.1,2.9,76,2.9,50v0C2.9,24,24,2.9,50,2.9z"/></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="equalizer" viewBox="0 0 100 100">
+                            <g class="equalizer-group">
+                              <rect class="bar"></rect>
+                              <rect class="bar"></rect>
+                              <rect class="bar"></rect>
+                              <rect class="bar"></rect>
+                              <rect class="bar"></rect>
+                            </g>
+                          </svg>
+                          <div class="audio__slider"></div>
+                          <button class="play-pause"></button>    
+                        </div>
+                  
+<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3/roundslider.js'></script>
+<script >$('.js-audio').each(function (index, el) {
+  initAudioPlayer($(this), index);
+});
+
+$('.audio__slider').roundSlider({
+  radius: 50,
+  value: 0,
+  startAngle: 90,
+  width: 5,
+  handleSize: '+6',
+  handleShape: 'round',
+  sliderType: 'min-range' });
+
+
+$('.audio__slider').on('drag, change', function (e) {
+  var $this = $(this);
+  var $elem = $this.closest('.js-audio');
+  updateAudio(e, $elem);
+  $this.addClass('active');
+});
+
+function updateAudio(e, $elem) {
+  console.log(e.handle.value);
+  var value = e.handle.value;
+  // var thisPlayer = el.find('.js-audio'),
+  var play = $elem.find('.play-pause'),
+  circle = $elem.find('#seekbar'),
+
+  getCircle = circle.get(0),
+  totalLength = getCircle.getTotalLength(),
+  //currentTime = $elem.find('audio')[0].currentTime,
+  maxduration = $elem.find('audio')[0].duration;
+  var y = value * maxduration / 100;
+  $elem.find('audio')[0].currentTime = y;
+
+}
+
+function initAudioPlayer(player) {
+  var audio = player.find('audio'),
+  play = player.find('.play-pause'),
+  circle = player.find('#seekbar'),
+  getCircle = circle.get(0),
+  totalLength = getCircle.getTotalLength();
+
+
+  circle.attr({
+    'stroke-dasharray': totalLength,
+    'stroke-dashoffset': totalLength });
+
+
+  play.on('click', function () {
+    if (audio[0].paused) {
+      $('audio').each(function (index, el) {
+        $('audio')[index].pause();
+      });
+      $('.js-audio').removeClass('playing');
+      audio[0].play();
+      player.removeClass('paused');
+      player.addClass('playing');
+    } else {
+      audio[0].pause();
+      player.removeClass('playing');
+      player.addClass('paused');
+    }
+  });
+
+  audio.on('timeupdate', function () {
+    var currentTime = audio[0].currentTime,
+    maxduration = audio[0].duration,
+    calc = totalLength - currentTime / maxduration * totalLength;
+
+    circle.attr('stroke-dashoffset', calc);
+
+    var value = Math.floor(currentTime / maxduration * 100);
+
+    var slider = audio.closest('.js-audio').find('.audio__slider');
+    $(slider).roundSlider('setValue', value);
+  });
+
+  audio.on('ended', function () {
+    player.removeClass('playing');
+    circle.attr('stroke-dashoffset', totalLength);
+
+  });
+}
+//# sourceURL=pen.js
+</script>
+</body></html>
