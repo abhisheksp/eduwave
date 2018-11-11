@@ -1,0 +1,83 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+<head>
+  <script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/koyaanisqatsi/pen/RoOzKX" />
+  <link rel="stylesheet" href="css/visual.css">
+
+</head><body bgcolor="#2F3242">
+  <h1 align='center' style> Watch the video below with full attention. It teaches you how an insertion sort works</h1>
+<div id="videobox">
+<div class="play_container">
+  <div class="play-button zoomin">
+    <div class="play-button__triangle">
+      <div id="video"></div>
+    </div>
+    <span class="close-button">&#x2715;</span>
+  </div>
+</div>
+</div>
+<div class="vid_overlay"></div>
+<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script >function setUpPlayButton() {
+  $('.play-button').on('click', function () {
+    $(this).toggleClass('zoomin');
+    $('.play_container').toggleClass('-clicked');
+    $('.vid_overlay').toggleClass('fired');
+
+    if ($('.play_container').hasClass('-clicked')) {
+      player.playVideo();
+      window.setTimeout(function () {
+        $('#video').addClass('fired');
+      }, 600);
+    } else {
+      player.stopVideo();
+      $('#video').removeClass('fired');
+    }
+
+  });
+}
+
+
+// 2. This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('video', {
+    height: '480',
+    width: '853',
+    videoId: '42427VQ_NHE',
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange } });
+
+
+}
+
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+  setUpPlayButton();
+}
+
+// 5. The API calls this function when the player's state changes.
+//    The function indicates that when playing a video (state=1),
+//    the player should play for six seconds and then stop.
+var done = false;
+function onPlayerStateChange(event) {
+  // if (event.data == YT.PlayerState.PLAYING && !done) {
+  //   setTimeout(stopVideo, 6000);
+  //   done = true;
+  // }
+}
+function stopVideo() {
+  player.stopVideo();
+}
+//# sourceURL=pen.js
+</script>
+</body></html>
