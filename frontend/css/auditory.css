@@ -5,10 +5,12 @@ html, body {
 
 h1 {
     color: white;
+    font-family: 'Montserrat';
 }
 
 h2 {
     color: white;
+    font-family: 'Montserrat';
 }
 
 #title {
@@ -582,6 +584,7 @@ p {
   align-items:center;
   justify-content:center;
   width: 200px;
+  font-family: 'Montserrat';
 }
 
 /* Hover state animation applied here */
