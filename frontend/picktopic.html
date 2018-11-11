@@ -71,8 +71,17 @@
     var urlParams = new URLSearchParams(window.location.search);
     var learningtype = urlParams.get('learningtype');
     console.log('learning-type: '+ learningtype)
-    $("#apython").attr("href", 'python-' + learningtype + '.html');
-    $("#acalculus").attr("href", 'calculus-' + learningtype + '.html');
+    html_extension = '.html'
+    pdf_extension = '.pdf'
+    extension = html_extension
+    if (learningtype==='auditory') {
+        $("#apython").attr("href", 'lessons/python/' + learningtype + pdf_extension);
+        $("#acalculus").attr("href", 'lessons/calculus/' + learningtype + extension);
+    } else {
+        $("#apython").attr("href", 'lessons/python/' + learningtype + extension);
+        $("#acalculus").attr("href", 'lessons/calculus/' + learningtype + extension);    
+    }
+    
     console.log('called');
 
     let rotate = false;
@@ -92,7 +101,6 @@
         button.innerHTML = rotate ? "Horizontally" : "Vertically";
     });
     //# sourceURL=pen.js
-
 </script>
 </body>
 </html>
