@@ -4,20 +4,7 @@
   <script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/ClaireLarsen/pen/XmVyVX" />
 <link rel="stylesheet" href="css/introduction.css">
 </head><body>
-  <form action="visual.html">
-    First name:<br>
-    <input type="text" name="firstname">
-    <br>
-    Last name:<br>
-    <input type="text" name="lastname">
-    <br><br>
-    <input type="submit" value="Submit">
-  </form>
-
-  <br></br>
-  <br></br>
   <h1 style='text-align:center'><font style="font-family:Roboto;" color='white' size='20'>L E T ' S  &nbsp;    D E T E R M I N E</font></h1>
-  <br></br>
   <br></br>
   <h1 style='text-align:center'><font style="font-family:Roboto;" color='white' size='20'>H O W   &nbsp;   Y O U</font></h1>
 <svg viewBox="0 0 960 300">
@@ -32,15 +19,22 @@
     <use xlink:href="#s-text" class="text-copy"></use>
   </g>
 </svg>
-  <br></br>
-  <br></br>
-  <br></br>
-  <div class='container'>
-    <span class='pulse-button'><a href='visual.html'>Start</a></span>
-  </div>
+    <form action="visual.html">
+      <legend align='center'>Start creating a learning profile</legend>
+      <br></br>
+      <div class="form-group" align='center'>
+        <label class="name label-signup" for="name">First Name</label>
+        <input type="text" name="firstname" placeholder="First Name">
+      </div>
+    <div class="form-group" align='center'>
+      <label class="username label-signup" for="username">Last Name</label>
+      <input type="text" name="lastname" placeholder="Last Name">
+    </div>
+    <div align='center'>
+      <input class="btn" type="submit" value="Submit" />
+    </div>
+  </form>
 <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script>
-<script>/* This Pen is best viewable in Google Chrome.
- */
-//# sourceURL=pen.js
+<script>
 </script>
 </body></html>
