@@ -1,116 +1,164 @@
-
-<!DOCTYPE html><html lang='en' class=''>
-<head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/HannahG/pen/RMGqXR" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
-<link rel='stylesheet' href='css/auditory.css'>
+<!DOCTYPE html>
+<html lang='en' class=''>
+<head>
+    <script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script>
+    <script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script>
+    <meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico"/>
+    <link rel="mask-icon" type=""
+          href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg"
+          color="#111"/>
+    <link rel="canonical" href="https://codepen.io/HannahG/pen/RMGqXR"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+    <link rel='stylesheet' href='css/auditory.css'>
 </head>
 <body>
-  <div class="slide__audio js-audio">
-                        <audio class="slide__audio-player" controls="">
-                          <source src="https://www.soundjay.com/nature/sounds/rain-01.mp3" type="audio/mpeg"/>
-                        </audio>
-                        <div class="audio__controls">
-                          <svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100"><path id="seekbar" fill="none" stroke-miterlimit="10" d="M50,2.9L50,2.9C76,2.9,97.1,24,97.1,50v0C97.1,76,76,97.1,50,97.1h0C24,97.1,2.9,76,2.9,50v0C2.9,24,24,2.9,50,2.9z"/></svg>
-                          <svg xmlns="http://www.w3.org/2000/svg" class="equalizer" viewBox="0 0 100 100">
-                            <g class="equalizer-group">
-                              <rect class="bar"></rect>
-                              <rect class="bar"></rect>
-                              <rect class="bar"></rect>
-                              <rect class="bar"></rect>
-                              <rect class="bar"></rect>
-                            </g>
-                          </svg>
-                          <div class="audio__slider"></div>
-                          <button class="play-pause"></button>    
-                        </div>
-                  
-<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3/roundslider.js'></script>
-<script >$('.js-audio').each(function (index, el) {
-  initAudioPlayer($(this), index);
-});
+<div class="slide__audio js-audio">
+    <audio class="slide__audio-player" controls="">
+        <source src="https://www.soundjay.com/nature/sounds/rain-01.mp3" type="audio/mpeg"/>
+    </audio>
+    <div class="audio__controls">
+        <svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 0 100 100">
+            <path id="seekbar" fill="none" stroke-miterlimit="10"
+                  d="M50,2.9L50,2.9C76,2.9,97.1,24,97.1,50v0C97.1,76,76,97.1,50,97.1h0C24,97.1,2.9,76,2.9,50v0C2.9,24,24,2.9,50,2.9z"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="equalizer" viewBox="0 0 100 100">
+            <g class="equalizer-group">
+                <rect class="bar"></rect>
+                <rect class="bar"></rect>
+                <rect class="bar"></rect>
+                <rect class="bar"></rect>
+                <rect class="bar"></rect>
+            </g>
+        </svg>
+        <div class="audio__slider"></div>
+        <button class="play-pause"></button>
+    </div>
 
-$('.audio__slider').roundSlider({
-  radius: 50,
-  value: 0,
-  startAngle: 90,
-  width: 5,
-  handleSize: '+6',
-  handleShape: 'round',
-  sliderType: 'min-range' });
+    <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3/roundslider.js'></script>
+    <script>$('.js-audio').each(function (index, el) {
+        initAudioPlayer($(this), index);
+    });
 
-
-$('.audio__slider').on('drag, change', function (e) {
-  var $this = $(this);
-  var $elem = $this.closest('.js-audio');
-  updateAudio(e, $elem);
-  $this.addClass('active');
-});
-
-function updateAudio(e, $elem) {
-  console.log(e.handle.value);
-  var value = e.handle.value;
-  // var thisPlayer = el.find('.js-audio'),
-  var play = $elem.find('.play-pause'),
-  circle = $elem.find('#seekbar'),
-
-  getCircle = circle.get(0),
-  totalLength = getCircle.getTotalLength(),
-  //currentTime = $elem.find('audio')[0].currentTime,
-  maxduration = $elem.find('audio')[0].duration;
-  var y = value * maxduration / 100;
-  $elem.find('audio')[0].currentTime = y;
-
-}
-
-function initAudioPlayer(player) {
-  var audio = player.find('audio'),
-  play = player.find('.play-pause'),
-  circle = player.find('#seekbar'),
-  getCircle = circle.get(0),
-  totalLength = getCircle.getTotalLength();
+    $('.audio__slider').roundSlider({
+        radius: 50,
+        value: 0,
+        startAngle: 90,
+        width: 5,
+        handleSize: '+6',
+        handleShape: 'round',
+        sliderType: 'min-range'
+    });
 
 
-  circle.attr({
-    'stroke-dasharray': totalLength,
-    'stroke-dashoffset': totalLength });
+    $('.audio__slider').on('drag, change', function (e) {
+        var $this = $(this);
+        var $elem = $this.closest('.js-audio');
+        updateAudio(e, $elem);
+        $this.addClass('active');
+    });
 
+    function updateAudio(e, $elem) {
+        console.log(e.handle.value);
+        var value = e.handle.value;
+        // var thisPlayer = el.find('.js-audio'),
+        var play = $elem.find('.play-pause'),
+            circle = $elem.find('#seekbar'),
 
-  play.on('click', function () {
-    if (audio[0].paused) {
-      $('audio').each(function (index, el) {
-        $('audio')[index].pause();
-      });
-      $('.js-audio').removeClass('playing');
-      audio[0].play();
-      player.removeClass('paused');
-      player.addClass('playing');
-    } else {
-      audio[0].pause();
-      player.removeClass('playing');
-      player.addClass('paused');
+            getCircle = circle.get(0),
+            totalLength = getCircle.getTotalLength(),
+            //currentTime = $elem.find('audio')[0].currentTime,
+            maxduration = $elem.find('audio')[0].duration;
+        var y = value * maxduration / 100;
+        $elem.find('audio')[0].currentTime = y;
+
     }
-  });
 
-  audio.on('timeupdate', function () {
-    var currentTime = audio[0].currentTime,
-    maxduration = audio[0].duration,
-    calc = totalLength - currentTime / maxduration * totalLength;
+    function initAudioPlayer(player) {
+        var audio = player.find('audio'),
+            play = player.find('.play-pause'),
+            circle = player.find('#seekbar'),
+            getCircle = circle.get(0),
+            totalLength = getCircle.getTotalLength();
 
-    circle.attr('stroke-dashoffset', calc);
 
-    var value = Math.floor(currentTime / maxduration * 100);
+        circle.attr({
+            'stroke-dasharray': totalLength,
+            'stroke-dashoffset': totalLength
+        });
 
-    var slider = audio.closest('.js-audio').find('.audio__slider');
-    $(slider).roundSlider('setValue', value);
-  });
 
-  audio.on('ended', function () {
-    player.removeClass('playing');
-    circle.attr('stroke-dashoffset', totalLength);
+        var start = 0;
+        var end = 0;
+        var urlParams = new URLSearchParams(window.location.search);
+        var first_name = urlParams.get('firstname');
+        var last_name = urlParams.get('lastname');
+        console.log('firstname: ' + first_name);
+        console.log('lastname: ' + last_name);
+        play.on('click', function () {
+            start = Date.now();
+            console.log('start: ' + start);
+            if (audio[0].paused) {
+                $('audio').each(function (index, el) {
+                    $('audio')[index].pause();
+                });
+                $('.js-audio').removeClass('playing');
+                audio[0].play();
+                player.removeClass('paused');
+                player.addClass('playing');
+            } else {
+                audio[0].pause();
+                player.removeClass('playing');
+                player.addClass('paused');
+            }
+        });
 
-  });
-}
-//# sourceURL=pen.js
-</script>
-</body></html>
+        audio.on('timeupdate', function () {
+            var currentTime = audio[0].currentTime,
+                maxduration = audio[0].duration,
+                calc = totalLength - currentTime / maxduration * totalLength;
+
+            circle.attr('stroke-dashoffset', calc);
+
+            var value = Math.floor(currentTime / maxduration * 100);
+
+            var slider = audio.closest('.js-audio').find('.audio__slider');
+            $(slider).roundSlider('setValue', value);
+        });
+
+        audio.on('ended', function () {
+            end = Date.now();
+            console.log('stopped: ' + end);
+            console.log('Start: ', start);
+            console.log('End: ', end);
+
+            $.get('https://abhisheksp.lib.id/read-concentration@dev/', {start: start, end: end})
+                .done(function (data) {
+                    var score = data;
+                    console.log("Auditory Score: " + score);
+
+                    $.get('https://abhisheksp.lib.id/store-scores@dev/', {
+                        first_name: first_name,
+                        last_name: last_name,
+                        score: score,
+                        question_type: 'auditory'
+                    });
+                });
+
+
+            player.removeClass('playing');
+            circle.attr('stroke-dashoffset', totalLength);
+
+        });
+    }
+
+    //# sourceURL=pen.js
+    </script>
+</body>
+</html>
