@@ -7,7 +7,7 @@ body {
 
 /* Beginning of Navbar CSS */
 body {
-    background-color: #2F3242;
+    background-color: black;
 }
 
 svg {
@@ -19,6 +19,8 @@ svg {
 }
 
 .message-box {
+    background-image: url('https://thumbs.gfycat.com/UglyShortArrowcrab-small.gif');
+    background-size: cover;
     height: 200px;
     width: 380px;
     position: absolute;
@@ -29,6 +31,7 @@ svg {
     color: #FFF;
     font-family: Roboto;
     font-weight: 300;
+    text-align: center;
 }
 
 .message-box h1 {
