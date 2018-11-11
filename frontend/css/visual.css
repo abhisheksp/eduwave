@@ -163,6 +163,7 @@ p {
   align-items:center;
   justify-content:center;
   width: 200px;
+  font-family: 'Montserrat';
 }
 
 /* Hover state animation applied here */
