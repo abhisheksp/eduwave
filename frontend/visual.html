@@ -5,6 +5,7 @@
     <script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="js/jquery.formautofill.js"></script>
     <meta charset='UTF-8'>
     <meta name="robots" content="noindex">
     <link rel="shortcut icon" type="image/x-icon"
@@ -18,7 +19,7 @@
 
 </head>
 <body bgcolor="#2F3242">
-<h1 align='center' style> Watch the video below with full attention. It teaches you how an insertion sort works</h1>
+<h1 align='center' style> Watch the video below with full attention; it teaches you how an insertion sort works. Note that this clip contains no audio.</h1>
 <div id="videobox">
     <div class="play_container">
         <div class="play-button zoomin">
@@ -30,6 +31,34 @@
     </div>
 </div>
 <div class="vid_overlay"></div>
+
+  <!--<div class = "continue">-->
+      <!--<center><a href="auditory.html" class="button">Continue</a></center>-->
+  <!--</div>-->
+
+
+<form id="f" action="auditory.html">
+    <input type="hidden" name="firstname" placeholder="First Name">
+    <input type="hidden" name="lastname" placeholder="Last Name">
+    <div align='center'>
+        <input class="button" type="submit" value="Continue"/>
+    </div>
+</form>
+
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var first_name = urlParams.get('firstname');
+    var last_name = urlParams.get('lastname');
+    console.log('firstname: ' + first_name);
+    console.log('lastname: ' + last_name);
+    var data = {
+        "firstname": first_name,
+        "lastname": last_name
+    };
+    $("#f").autofill(data);
+    </script>
+
+
 <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script>
