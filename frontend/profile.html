@@ -16,6 +16,7 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="css/profile.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+    <script src="js/jquery.formautofill.js"></script>
 </head>
 <body>
 <aside class="profile-card">
@@ -43,11 +44,17 @@
     <!-- bit of a bio; who are you? -->
     <div class="profile-bio">
 
-        <p id="learningtype"><font size='8'>
+        <p id="learningtype">
             John is a visual learner
-        </p></font>
-
+        </p>
+        <form id="f" action="picktopic.html">
+            <input type="hidden" name="learningtype">
+            <div align='center'>
+                <input id="fbutton" type="submit" value="Continue"/>
+            </div>
+        </form>
     </div>
+
 
     <!-- some social links to show off -->
 
@@ -59,7 +66,7 @@
     console.log('firstname: ' + first_name);
     console.log('lastname: ' + last_name);
 
-    full_name = first_name + ' ' + last_name;
+    var full_name = first_name + ' ' + last_name;
     $("#fullname").text(full_name);
     var learningtype = 'default';
     $.get('https://abhisheksp.lib.id/learning-type@dev/', {
@@ -70,6 +77,11 @@
         var paragraph_text = full_name + ' is a ' + learningtype + ' learner';
         $("#learningtype").text(paragraph_text);
         console.log('learning-type response ' + data);
+        var data = {
+            "learningtype": learningtype
+        };
+        $("#f").autofill(data);
+
     });
 </script>
 </body>

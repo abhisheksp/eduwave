@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400|Signika:700&subset=latin-ext');
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: black;
+        }
+
+        .stage {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .split-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .split-list--vertical {
+            flex-direction: column;
+        }
+
+        .split-list--horizontal {
+            flex-direction: row;
+        }
+
+        .split-list > li {
+            position: relative;
+            color: #FFF;
+            transition: 500ms flex ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 1 1 auto;
+            height: 100vh;
+        }
+
+        .split-list--horizontal > li {
+            height: 100vh;
+        }
+
+        .split-list--vertical > li {
+            width: 100%;
+            height: auto;
+        }
+
+        .split-list > li:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .split-list--vertical > li:before {
+            transform: skewY(-3deg);
+        }
+
+        .split-list .left,
+        .split-list .left:before {
+            background-color: #19647e;
+        }
+
+        .split-list .center,
+        .split-list .center:before {
+            background-color: #4b3f72;
+        }
+
+        .split-list .right,
+        .split-list .right:before {
+            background-color: #1f2041;
+        }
+
+        .split-list:hover > li {
+            flex: 1 1 auto;
+        }
+
+        .split-list .button,
+        .split-list p {
+            transition: 400ms opacity ease;
+            z-index: 2;
+            font-size: 1.6rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0;
+        }
+
+        .split-list:hover > li > * {
+            opacity: 1;
+            color: white;
+        }
+
+        .split-list > li:hover {
+            flex: 4 1 auto;
+        }
+
+        .split-list > li:hover > * {
+            opacity: 1;
+        }
+
+        .button {
+            cursor: pointer;
+            font-size: 1.6rem;
+            padding: 1.2rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 900;
+            font-family: 'Signika', sans-serif;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+            box-shadow: inset 0px 0px 0px 3px #FFF, 1px 1px 4px rgba(0, 0, 0, 0.15);
+            transition: 400ms all ease;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            color: #FFF;
+        }
+
+        .split-list .button {
+            color: #FFF;
+        }
+
+        .split-list .button:hover {
+            background-color: rgba(255, 255, 255, 1);
+            color: #444;
+        }
+
+        .button.switch {
+            position: fixed;
+            font-size: 1.2rem;
+            padding: 0.8rem 2rem;
+            top: 2.4rem;
+            left: 2.4rem;
+            z-index: 999;
+            opacity: 0.5;
+            box-shadow: inset 0px 0px 0px 2px #FFF, 1px 1px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .button.switch:hover {
+            opacity: 1;
+        }
